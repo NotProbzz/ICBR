@@ -56,6 +56,8 @@ jobs:
           npx cap init "Bovine AI" "com.bovineai.breedscanner" --web-dir dist
           npx cap add android
           npx cap sync android
+          # Force Gradle to compile all tasks with Java 21
+          echo "org.gradle.java.home=${JAVA_HOME}" >> android/gradle.properties
         env:
           JAVA_HOME: ${{ steps.setup-java.outputs.path }}
 
@@ -63,9 +65,10 @@ jobs:
         run: |
           cd android
           chmod +x ./gradlew
-          ./gradlew assembleDebug --no-daemon --stacktrace
+          ./gradlew assembleDebug -Dorg.gradle.java.home="$JAVA_HOME" --no-daemon --stacktrace
         env:
           JAVA_HOME: ${{ steps.setup-java.outputs.path }}
+          PATH: ${{ steps.setup-java.outputs.path }}/bin:${{ env.PATH }}
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
