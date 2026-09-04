@@ -1,0 +1,10 @@
+{
+  "name": "Remix Indian Cattle & Buffalo Breed Recognition",
+  "description": "Image-based AI recognition system for indigenous Indian cattle (Bos indicus) and buffalo (Bubalus bubalis) breeds with morphological feature analysis and ICAR breed data.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

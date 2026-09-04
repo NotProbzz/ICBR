@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#064E3B"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCD34D"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)"/>
+  <!-- Decorative Ring -->
+  <circle cx="256" cy="256" r="200" fill="none" stroke="#F59E0B" stroke-width="4" stroke-dasharray="12 8" opacity="0.6"/>
+  <!-- Scanner Corners -->
+  <path d="M 96 160 L 96 96 L 160 96" fill="none" stroke="#F59E0B" stroke-width="8" stroke-linecap="round"/>
+  <path d="M 416 160 L 416 96 L 352 96" fill="none" stroke="#F59E0B" stroke-width="8" stroke-linecap="round"/>
+  <path d="M 96 352 L 96 416 L 160 416" fill="none" stroke="#F59E0B" stroke-width="8" stroke-linecap="round"/>
+  <path d="M 416 352 L 416 416 L 352 416" fill="none" stroke="#F59E0B" stroke-width="8" stroke-linecap="round"/>
+  <!-- Central Bovine & Camera AI Motif -->
+  <g filter="url(#shadow)">
+    <!-- Horns -->
+    <path d="M 170 210 C 130 140 100 110 80 125 C 70 135 110 190 190 235 Z" fill="url(#goldGrad)"/>
+    <path d="M 342 210 C 382 140 412 110 432 125 C 442 135 402 190 322 235 Z" fill="url(#goldGrad)"/>
+    <!-- Head & Ears -->
+    <ellipse cx="140" cy="245" rx="45" ry="20" transform="rotate(-20 140 245)" fill="#F3F4F6"/>
+    <ellipse cx="372" cy="245" rx="45" ry="20" transform="rotate(20 372 245)" fill="#F3F4F6"/>
+    <!-- Face Shield -->
+    <path d="M 190 190 C 220 180 292 180 322 190 C 340 240 330 320 256 370 C 182 320 172 240 190 190 Z" fill="#FFFFFF"/>
+    <!-- Muzzle / Snout -->
+    <ellipse cx="256" cy="335" rx="48" ry="32" fill="#E5E7EB"/>
+    <circle cx="238" cy="340" r="7" fill="#374151"/>
+    <circle cx="274" cy="340" r="7" fill="#374151"/>
+    <!-- Eyes -->
+    <ellipse cx="218" cy="248" rx="10" ry="14" fill="#1F2937"/>
+    <circle cx="220" cy="244" r="3.5" fill="#FFFFFF"/>
+    <ellipse cx="294" cy="248" rx="10" ry="14" fill="#1F2937"/>
+    <circle cx="296" cy="244" r="3.5" fill="#FFFFFF"/>
+    <!-- Zebu Hump & Tilak Gold Motif -->
+    <path d="M 256 205 L 263 225 L 256 235 L 249 225 Z" fill="#D97706"/>
+    <!-- AI Scan Beam Laser Line -->
+    <line x1="170" y1="285" x2="342" y2="285" stroke="#10B981" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="256" cy="285" r="5" fill="#34D399"/>
+  </g>
+  <!-- Text Emblem -->
+  <text x="256" y="455" text-anchor="middle" fill="#E5E7EB" font-family="system-ui, sans-serif" font-size="28" font-weight="700" letter-spacing="4">BOVINE AI</text>
+</svg>

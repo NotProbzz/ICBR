@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Indian Cattle & Buffalo Breed Recognition</title>
+    <script>
+      (function () {
+        try {
+          var nativeFetch = typeof window !== 'undefined' && window.fetch ? window.fetch.bind(window) : undefined;
+          if (nativeFetch) {
+            var currentFetch = nativeFetch;
+            var propDesc = {
+              get: function () {
+                return currentFetch;
+              },
+              set: function (fn) {
+                currentFetch = fn;
+              },
+              configurable: true,
+              enumerable: true,
+            };
+
+            try {
+              Object.defineProperty(window, 'fetch', propDesc);
+            } catch (e1) {}
+
+            if (typeof Window !== 'undefined' && Window.prototype) {
+              try {
+                Object.defineProperty(Window.prototype, 'fetch', propDesc);
+              } catch (e2) {}
+            }
+          }
+
+          // Suppress benign [vite] websocket connection notice from triggering studio error banner
+          if (typeof window !== 'undefined' && window.console && window.console.error) {
+            var originalConsoleError = window.console.error;
+            window.console.error = function () {
+              var firstArg = arguments.length > 0 ? arguments[0] : '';
+              if (
+                typeof firstArg === 'string' &&
+                (firstArg.indexOf('[vite] failed to connect') !== -1 ||
+                 firstArg.indexOf('[vite]') !== -1 && firstArg.indexOf('websocket') !== -1)
+              ) {
+                if (window.console.debug) {
+                  window.console.debug.apply(window.console, arguments);
+                }
+                return;
+              }
+              originalConsoleError.apply(window.console, arguments);
+            };
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <meta name="description" content="Image-based AI recognition system for indigenous Indian cattle (Bos indicus) and buffalo (Bubalus bubalis) breeds with morphological feature analysis and ICAR breed data." />
+    <meta name="theme-color" content="#064e3b" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="BovineAI" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="alternate icon" type="image/png" href="/pwa-192x192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta property="og:title" content="Indian Cattle & Buffalo Breed Recognition" />
+    <meta property="og:description" content="Image-based AI recognition system for indigenous Indian cattle (Bos indicus) and buffalo (Bubalus bubalis) breeds with morphological feature analysis and ICAR breed data." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
