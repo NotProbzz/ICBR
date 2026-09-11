@@ -4,9 +4,8 @@ import { BreedScanner } from './components/BreedScanner';
 import { BreedEncyclopedia } from './components/BreedEncyclopedia';
 import { BreedComparator } from './components/BreedComparator';
 import { VeterinaryAssistant } from './components/VeterinaryAssistant';
-import { PWAInstallButton, OfflineIndicator } from './components/PWAInstallButton';
 import { BreedRecognitionResult } from './types';
-import { ShieldCheck, Info, Sparkles, Smartphone } from 'lucide-react';
+import { BackgroundSlideshow } from './components/BackgroundSlideshow';
 
 const LOCAL_STORAGE_HISTORY_KEY = 'bovine_breed_scan_history_v1';
 
@@ -67,8 +66,10 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-stone-100/70 text-stone-900 flex flex-col font-sans selection:bg-amber-200">
+    <div className="min-h-screen text-stone-100 flex flex-col font-sans selection:bg-amber-500/30 relative">
+      <BackgroundSlideshow />
       
+      <div className="relative z-10 flex flex-col min-h-screen">
       {/* Primary Header */}
       <Header
         activeTab={activeTab}
@@ -77,29 +78,8 @@ export default function App() {
       />
 
       {/* Main Container */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+      <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         
-        {/* Top Banner / System Advisory */}
-        <div className="mb-6 p-4 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-xs text-amber-950 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-          <div className="flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-amber-700 shrink-0" />
-            <span className="font-semibold">
-              Indigenous Bovine Genetic Registry:
-            </span>
-            <span className="text-stone-700">
-              Covers 15+ Bos indicus zebu cattle & 10+ Bubalus bubalis riverine buffalo breeds with ICAR-NBAGR accession metrics.
-            </span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="flex items-center gap-1.5 font-medium text-amber-900 shrink-0">
-              <ShieldCheck className="w-4 h-4 text-emerald-600" />
-              <span>A2 Milk & Morphological Standards</span>
-            </div>
-            <div className="hidden sm:block border-l border-amber-500/30 h-4 mx-1" />
-            <PWAInstallButton variant="header" />
-          </div>
-        </div>
-
         {/* View Switching */}
         {activeTab === 'scanner' && (
           <BreedScanner
@@ -139,24 +119,13 @@ export default function App() {
             <p className="font-semibold text-stone-200">
               Indian Cattle & Buffalo Breed Recognition System (PashuPehchan AI)
             </p>
-            <p className="text-[11px] text-stone-500 mt-0.5">
+            <p className="text-[11px] text-stone-500 mt-0.5 max-w-xl">
               Morphological pattern recognition based on ICAR-NBAGR descriptors for livestock conservation and dairy genomics.
             </p>
           </div>
-
-          <div className="flex items-center gap-4 text-[11px] text-stone-500">
-            <span>Powered by Gemini Multimodal Vision</span>
-            <span>•</span>
-            <span>Express + Vite</span>
-            <span>•</span>
-            <span>A2 Dairy Profiling</span>
-          </div>
         </div>
       </footer>
-
-      {/* Offline Status Toast */}
-      <OfflineIndicator />
-
+      </div>
     </div>
   );
 }

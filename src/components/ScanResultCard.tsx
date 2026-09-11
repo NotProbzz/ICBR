@@ -173,7 +173,7 @@ export const ScanResultCard: React.FC<ScanResultCardProps> = ({ result, onConsul
           </p>
         </div>
       </div>
-
+      
       {/* Key Distinguishing Features */}
       {result.keyDistinguishingCharacteristics && result.keyDistinguishingCharacteristics.length > 0 && (
         <div className="p-5 sm:p-6 bg-amber-50/40">

@@ -252,6 +252,19 @@ Return the identification with confidence score, anatomical markers (horns, ears
               type: Type.STRING,
               description: "Concise summary verdict of the recognition",
             },
+            structuralTraits: {
+              type: Type.ARRAY,
+              description: "5 key structural hotspots for a 3D structural breakdown overlay.",
+              items: {
+                type: Type.OBJECT,
+                properties: {
+                  part: { type: Type.STRING, description: "Must be exactly one of: 'head_horns', 'hump', 'dewlap', 'body_frame', 'udder_tail'" },
+                  trait: { type: Type.STRING, description: "Short label for the trait, e.g. 'Convex Forehead'" },
+                  description: { type: Type.STRING, description: "Detailed structural explanation and unique traits" },
+                },
+                required: ["part", "trait", "description"]
+              }
+            },
             morphologicalMarkers: {
               type: Type.OBJECT,
               properties: {
@@ -352,6 +365,7 @@ Return the identification with confidence score, anatomical markers (horns, ears
             "scientificName",
             "confidenceScore",
             "summaryVerdict",
+            "structuralTraits",
             "morphologicalMarkers",
             "classification",
             "managementAndCare",

@@ -31,44 +31,23 @@ jobs:
         run: npm run build
 
       - name: Setup Java JDK
-        id: setup-java
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '21'
-
-      - name: Verify Java 21
-        run: |
-          echo "JAVA_HOME is $JAVA_HOME"
-          java -version
-          javac -version
-
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
-
-      - name: Accept Android SDK Licenses
-        run: |
-          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
+          java-version: '17'
 
       - name: Setup Capacitor Android
         run: |
-          npm install @capacitor/core @capacitor/cli @capacitor/android
+          npm install @capacitor/core@^6.0.0 @capacitor/cli@^6.0.0 @capacitor/android@^6.0.0
           npx cap init "Bovine AI" "com.bovineai.breedscanner" --web-dir dist
           npx cap add android
           npx cap sync android
-          # Force Gradle to compile all tasks with Java 21
-          echo "org.gradle.java.home=${JAVA_HOME}" >> android/gradle.properties
-        env:
-          JAVA_HOME: ${{ steps.setup-java.outputs.path }}
 
       - name: Build Debug APK with Gradle
         run: |
           cd android
           chmod +x ./gradlew
-          ./gradlew assembleDebug -Dorg.gradle.java.home="$JAVA_HOME" --no-daemon --stacktrace
-        env:
-          JAVA_HOME: ${{ steps.setup-java.outputs.path }}
-          PATH: ${{ steps.setup-java.outputs.path }}/bin:${{ env.PATH }}
+          ./gradlew assembleDebug --no-daemon --stacktrace
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4

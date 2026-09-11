@@ -41,6 +41,12 @@ export interface AlternativeMatch {
   differentiatingTraits: string;
 }
 
+export interface StructuralTrait {
+  part: 'head_horns' | 'hump' | 'dewlap' | 'body_frame' | 'udder_tail';
+  trait: string;
+  description: string;
+}
+
 export interface BreedRecognitionResult {
   id: string;
   timestamp: number;
@@ -49,6 +55,7 @@ export interface BreedRecognitionResult {
   scientificName: string;
   confidenceScore: number;
   summaryVerdict: string;
+  structuralTraits: StructuralTrait[];
   morphologicalMarkers: MorphologicalMarkers;
   classification: ClassificationData;
   managementAndCare: ManagementGuide;

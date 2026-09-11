@@ -49,6 +49,15 @@ export const BreedScanner: React.FC<BreedScannerProps> = ({
     };
   }, []);
 
+  // Auto-scroll to result when it's available
+  useEffect(() => {
+    if (currentResult) {
+      setTimeout(() => {
+        document.getElementById('recognition-result-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
+  }, [currentResult]);
+
   const startCamera = async () => {
     setCameraError(null);
     setIsCameraActive(true);
@@ -222,7 +231,7 @@ export const BreedScanner: React.FC<BreedScannerProps> = ({
             </p>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             {!isCameraActive ? (
               <button
                 type="button"
@@ -429,7 +438,7 @@ export const BreedScanner: React.FC<BreedScannerProps> = ({
 
       {/* Recognition Result Card Display */}
       {currentResult && (
-        <div id="recognition-result-section" className="scroll-mt-20">
+        <div id="recognition-result-section" className="scroll-mt-24 transition-all duration-500">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
               <CheckCircle className="w-5 h-5 text-emerald-600" />
